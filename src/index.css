@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-primary: var(--color-emerald-500);
+  --color-primary-foreground: var(--color-white);
+  --color-accent: var(--color-emerald-500/10);
+  --color-accent-foreground: var(--color-emerald-500);
+  --color-destructive: var(--color-red-500);
+  --color-destructive-foreground: var(--color-white);
+  --color-secondary: var(--color-zinc-800);
+  --color-secondary-foreground: var(--color-zinc-100);
+  --color-input: var(--color-zinc-800);
+  --color-ring: var(--color-emerald-500);
+  --color-background: var(--color-black);
+  --color-foreground: var(--color-white);
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Fake URL Risk Analyzer",
+  "description": "Advanced phishing detection tool that analyzes URLs, SSL certificates, and page behavior using AI to generate real-time risk scores.",
+  "requestFramePermissions": []
+}
