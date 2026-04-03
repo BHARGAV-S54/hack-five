@@ -8,9 +8,12 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+let groq: Groq | null = null;
+if (process.env.GROQ_API_KEY) {
+  groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+} else {
+  console.warn("⚠️  GROQ_API_KEY is missing. AI analysis will be unavailable.");
+}
 
 async function startServer() {
   const app = express();
@@ -24,6 +27,10 @@ async function startServer() {
 
     if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({ error: "Messages array is required" });
+    }
+
+    if (!groq) {
+      return res.status(503).json({ error: "AI service is currently unavailable. Please check the GROQ_API_KEY." });
     }
 
     try {
@@ -109,7 +116,7 @@ async function startServer() {
         behaviorAnalysis: findings.find(f => f.includes("Keywords")) || "No suspicious behavioral keywords detected."
       };
 
-      if (process.env.GROQ_API_KEY) {
+      if (groq) {
         try {
           const prompt = `Analyze this URL for phishing risks: ${url}. 
           Heuristic findings: ${findings.join("; ")}.
