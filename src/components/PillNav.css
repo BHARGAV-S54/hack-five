@@ -30,7 +30,7 @@
 }
 
 .pill-nav-items.desktop-only {
-  display: none; /* We want the menu inside the button as requested */
+  display: flex;
 }
 
 .mobile-menu-button {
